@@ -25,24 +25,8 @@ jobs:
           tags: khjtony/sensor-hub-buildtools:latest
           platforms: linux/amd64,linux/arm64
           file: Dockerfile
-  run_build:
-    # The host should always be Linux
-    runs-on: ubuntu-20.04
-    name: Build on ubuntu-20.04 aarch64
-    steps:
-      - uses: actions/checkout@v2.1.0
-      - uses: uraimo/run-on-arch-action@v2.0.5
-        name: Run commands
-        id: runcmd
+      - uses: addnab/docker-run-action@v3
         with:
-          arch: aarch64
-          distro: ubuntu20.04
-
-          # Not required, but speeds up builds by storing container images in
-          # a GitHub package registry.
-          githubToken: ${{ github.token }}
-
-          # Set an output parameter `uname` for use in subsequent steps
-          run: |
-            docker run khjtony/sensor-hub-buildtools:latest
+          image: khjtony/sensor-hub-buildtools:latest
+          run: source /workspace/build_all.sh
             
