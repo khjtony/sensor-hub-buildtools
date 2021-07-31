@@ -1,6 +1,13 @@
 #!/bin/bash
 FASTDDS_VERSION=v2.3.3
 cd /workspace/fastdds/
-mv -f install fastdds-$FASTDDS_VERSION
-tar -czvf fastdds-$FASTDDS_VERSION.tar.gz ./fastdds-$FASTDDS_VERSION
+ARCH=`uname -m`
+if [ "$ARCH" != "x86_64" ]; then
+    ARCH=aarch64
+fi
+mv -f install fastdds-$FASTDDS_VERSION-$ARCH
+tar -czvf fastdds-$FASTDDS_VERSION-$ARCH.tar.gz ./fastdds-$FASTDDS_VERSION-$ARCH
+if [ "$PUSH_BINARY" = "yes" ]; then
+    mc cp ./fastdds-$FASTDDS_VERSION-$ARCH.tar.gz icsl-nas/artifact/fastdds/binary
+fi
 cd /workspace

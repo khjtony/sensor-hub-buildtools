@@ -9,3 +9,4 @@ RUN bash -c "apt-get update && \
 RUN bash -c "apt-get install -y build-essential cmake git git wget curl vim"
 RUN bash -c "source workspace/install_minio.sh"
 WORKDIR /workspace
+CMD /workspace/build_all.sh
