@@ -29,4 +29,15 @@ jobs:
         with:
           image: khjtony/sensor-hub-buildtools:latest
           run: PUSH_BINARY=yes /workspace/build_all.sh
-            
+      - uses: actions/checkout@v2.1.0
+      - uses: uraimo/run-on-arch-action@v2.0.5
+        name: Run commands
+        id: runcmd
+        with:
+          arch: aarch64
+          distro: ubuntu18.04
+
+          # Set an output parameter `uname` for use in subsequent steps
+          run: |
+            uname -a
+            docker run khjtony/sensor-hub-buildtools:latest
