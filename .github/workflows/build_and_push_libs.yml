@@ -28,5 +28,5 @@ jobs:
       - uses: addnab/docker-run-action@v3
         with:
           image: khjtony/sensor-hub-buildtools:latest
-          run: source /workspace/build_all.sh
+          run: docker run khjtony/sensor-hub-buildtools:latest
             
