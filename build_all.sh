@@ -1,2 +1,4 @@
 #!/bin/bash
-source ./fastdds/build_all.sh
+pushd fastdds
+source ./build_all.sh
+popd
